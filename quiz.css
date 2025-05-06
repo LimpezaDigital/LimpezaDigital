@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #4aaa9a;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    min-height: 100vh;
+}
+
+header {
+    background-color: white;
+    padding: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.logo::before {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: #4aaa9a;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.logo span {
+    color: #8bc34a;
+}
+
+.menu {
+    display: flex;
+    gap: 30px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #333;
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: all 0.3s;
+    font-weight: 500;
+    position: relative;
+}
+
+.menu a:hover {
+    color: #8bc34a;
+    background-color: rgba(139, 195, 74, 0.1);
+}
+
+.menu a.active {
+    color: white;
+    background-color: #4aaa9a;
+}
+
+.menu a.active:hover {
+    background-color: #3d9b8c;
+    color: white;
+}
+
+.content {
+    margin: 50px auto;
+    max-width: 1000px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 32px;
+}
+
+h1 span {
+    color: #8bc34a;
+}
+
+.coming-soon {
+    margin: 30px 0;
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.construction-icon {
+    font-size: 60px;
+    color: #8bc34a;
+    margin-bottom: 20px;
+}
