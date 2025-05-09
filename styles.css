@@ -302,7 +302,7 @@ h3 span {
 .btn-limpeza {
   display: inline-block;
   background-color: var(--accent-color);
-  color: white;
+  color: rgb(139, 139, 139);
   padding: 12px 30px;
   border-radius: var(--border-radius);
   text-decoration: none;
