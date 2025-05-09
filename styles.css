@@ -45,6 +45,7 @@ a {
 }
 
 ul {
+  /* background-color: black; */
   list-style: none;
 }
 
@@ -95,6 +96,7 @@ nav ul {
 
 .menu a,
 nav ul li a {
+  /* background-color: black; */
   font-size: 16px;
   font-weight: 500;
   color: var(--text-dark);

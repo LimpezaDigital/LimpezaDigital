@@ -5,29 +5,419 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Questionário - LIMPA BRASIL</title>
     <link rel="stylesheet" href="quiz.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="nav">
-                <div class="logo">LIMPA <span>BRASIL</span></div>
-                <div class="menu">
-                    <a href="index.html">Sobre</a>
-                    <a href="questionario.html" class="active">Questionário</a>
-                    <a href="ferramenta.html">Ferramenta</a>
+    <div class="quiz-container">
+        <header class="header">
+            <div class="container">
+                <div class="nav">
+                    <div class="logo">
+                        <span class="logo-limpa">LIMPA</span> <span class="logo-brasil">BRASIL</span>
+                    </div>
+                    <nav class="menu">
+                        <a href="index.html">Sobre</a>
+                        <a href="quizz.html" class="active">Questionário</a>
+                        <a href="ferramenta.html">Ferramenta</a>
+                    </nav>
                 </div>
             </div>
+        </header>
+
+        <div class="hero-section">
+            <div class="container">
+                <h1>Quiz de Limpeza Digital</h1>
+                <p>Teste seus conhecimentos sobre limpeza digital</p>
+            </div>
         </div>
-    </header>
-    
-    <div class="container">
-        <div class="content">
-            <div class="construction-icon">⚙️</div>
-            <h1>Nosso <span>Questionário</span></h1>
-            <p class="coming-soon">
-                Estamos desenvolvendo nosso questionário. Em breve estará disponível.
-            </p>
-        </div>
+
+        <main class="main">
+            <div class="container">
+                <!-- Seção de Perguntas -->
+                <div id="questions-section" class="questions-section">
+                    <div class="quiz-progress">
+                        <div class="progress-indicator">
+                            <div class="progress-circles" id="progress-circles">
+                                <!-- Círculos de progresso serão adicionados via JavaScript -->
+                            </div>
+                        </div>
+                        <div class="progress-info">
+                            <span class="question-counter">Pergunta <span id="current-question">1</span> de <span id="total-questions">10</span></span>
+                            <span class="score-counter">Pontuação: <span id="score">0</span></span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h2 id="question-text">O que é limpeza digital?</h2>
+
+                        <div class="options-container" id="options-container">
+                        </div>
+
+                        <div class="button-container">
+                            <button id="next-button" class="button" disabled>
+                                Próxima <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="results-section" class="results-section hidden">
+                    <div class="results-content">
+                        <div class="result-icon">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <h1>Quiz Concluído!</h1>
+                        <p class="score-text">
+                            Sua pontuação: <span id="final-score" class="highlight-score">0</span> de <span id="max-score">10</span>
+                        </p>
+
+                        <div class="result-progress-bar-container">
+                            <div class="result-progress-bar" id="result-progress-bar"></div>
+                        </div>
+
+                        <div id="feedback-container" class="feedback-container">
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button id="reset-button" class="button">
+                            <i class="fa-solid fa-rotate"></i> Tentar Novamente
+                        </button>
+                        <button class="button outline">Aprender Mais Sobre Limpeza Digital</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="logo">
+                        <span class="logo-limpa">LIMPA</span> <span class="logo-brasil">BRASIL</span>
+                    </div>
+                    <p class="copyright">
+                        © 2023 Limpa Brasil. Todos os direitos reservados.
+                    </p>
+                </div>
+            </div>
+        </footer>
     </div>
+
+    <script>
+        // Dados das perguntas
+        const questions = [
+            {
+                question: "O que é limpeza digital?",
+                options: [
+                    "Formatar o computador",
+                    "Excluir arquivos físicos",
+                    "Organizar e remover dados digitais desnecessários",
+                    "Trocar o antivírus",
+                ],
+                correctAnswer: 2,
+            },
+            {
+                question: "Qual é um benefício da limpeza digital?",
+                options: [
+                    "Aumentar o tamanho da tela",
+                    "Melhorar o desempenho do dispositivo",
+                    "Instalar aplicativos automaticamente",
+                    "Aumentar o volume do celular",
+                ],
+                correctAnswer: 1,
+            },
+            {
+                question: "Qual destes você deve considerar excluir durante uma limpeza digital?",
+                options: ["Aplicativos não utilizados", "Arquivos do sistema", "Antivírus", "Papel de parede"],
+                correctAnswer: 0,
+            },
+            {
+                question: "Qual ferramenta ajuda na limpeza digital de um computador com Windows?",
+                options: ["Bloco de notas", "Calculadora", "Limpeza de Disco", "Paint"],
+                correctAnswer: 2,
+            },
+            {
+                question: "O que é armazenamento em nuvem?",
+                options: [
+                    "Uma pasta dentro do celular",
+                    "Armazenamento em pen drives",
+                    "Espaço de armazenamento em servidores online",
+                    "A função de reiniciar dispositivos",
+                ],
+                correctAnswer: 2,
+            },
+            {
+                question: "O que acontece se você não faz limpeza digital com frequência?",
+                options: [
+                    "O aparelho fica mais bonito",
+                    "Nada muda",
+                    "O desempenho pode cair e os dados se acumulam",
+                    "Ele se desliga automaticamente",
+                ],
+                correctAnswer: 2,
+            },
+            {
+                question: "Como a limpeza de e-mails pode ajudar?",
+                options: [
+                    "Economiza bateria",
+                    "Reduz o consumo de espaço e melhora a organização",
+                    "Muda o plano de internet",
+                    "Desinstala vírus",
+                ],
+                correctAnswer: 1,
+            },
+            {
+                question: "Qual é uma boa prática ao organizar arquivos digitais?",
+                options: [
+                    "Colocar tudo em uma só pasta",
+                    "Renomear arquivos com emojis",
+                    "Criar pastas temáticas e nomeadas claramente",
+                    "Deixar todos os arquivos no desktop",
+                ],
+                correctAnswer: 2,
+            },
+            {
+                question: "Qual app pode ajudar a encontrar arquivos duplicados no celular?",
+                options: ["WhatsApp", "Facebook", "Files do Google", "Instagram"],
+                correctAnswer: 2,
+            },
+            {
+                question: "A limpeza digital deve ser feita:",
+                options: [
+                    "Uma vez por ano",
+                    "Apenas quando o celular trava",
+                    "Regularmente, como parte da rotina",
+                    "Quando o técnico mandar",
+                ],
+                correctAnswer: 2,
+            },
+        ];
+
+        // Variáveis de estado
+        let currentQuestion = 0;
+        let selectedOption = null;
+        let score = 0;
+        let answered = false;
+
+        // Elementos DOM
+        const questionsSection = document.getElementById('questions-section');
+        const resultsSection = document.getElementById('results-section');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const currentQuestionEl = document.getElementById('current-question');
+        const totalQuestionsEl = document.getElementById('total-questions');
+        const scoreEl = document.getElementById('score');
+        const progressCircles = document.getElementById('progress-circles');
+        const nextButton = document.getElementById('next-button');
+        const resetButton = document.getElementById('reset-button');
+        const finalScoreEl = document.getElementById('final-score');
+        const maxScoreEl = document.getElementById('max-score');
+        const resultProgressBar = document.getElementById('result-progress-bar');
+        const feedbackContainer = document.getElementById('feedback-container');
+
+        // Inicialização
+        function initQuiz() {
+            currentQuestionEl.textContent = currentQuestion + 1;
+            totalQuestionsEl.textContent = questions.length;
+            maxScoreEl.textContent = questions.length;
+            createProgressCircles();
+            updateProgressCircles();
+            loadQuestion();
+
+            // Event listeners
+            nextButton.addEventListener('click', handleNextQuestion);
+            resetButton.addEventListener('click', resetQuiz);
+        }
+
+        // Criar círculos de progresso
+        function createProgressCircles() {
+            progressCircles.innerHTML = '';
+            for (let i = 0; i < questions.length; i++) {
+                const circle = document.createElement('div');
+                circle.className = 'progress-circle';
+                if (i === 0) {
+                    circle.classList.add('active');
+                }
+                progressCircles.appendChild(circle);
+            }
+        }
+
+        // Atualizar círculos de progresso
+        function updateProgressCircles() {
+            const circles = document.querySelectorAll('.progress-circle');
+            circles.forEach((circle, index) => {
+                if (index < currentQuestion) {
+                    circle.classList.remove('active');
+                    circle.classList.add('completed');
+                } else if (index === currentQuestion) {
+                    circle.classList.add('active');
+                    circle.classList.remove('completed');
+                } else {
+                    circle.classList.remove('active', 'completed');
+                }
+            });
+        }
+
+        // Carregar pergunta atual
+        function loadQuestion() {
+            questionText.textContent = questions[currentQuestion].question;
+            optionsContainer.innerHTML = '';
+            
+            questions[currentQuestion].options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option';
+                optionDiv.dataset.index = index;
+                
+                const optionContent = document.createElement('div');
+                optionContent.className = 'option-content';
+                
+                const optionText = document.createElement('span');
+                optionText.textContent = option;
+                
+                optionContent.appendChild(optionText);
+                optionDiv.appendChild(optionContent);
+                
+                optionDiv.addEventListener('click', () => handleOptionClick(index));
+                optionsContainer.appendChild(optionDiv);
+            });
+
+            // Adicionar animação de entrada
+            questionsSection.classList.add('slide-in');
+            setTimeout(() => {
+                questionsSection.classList.remove('slide-in');
+            }, 500);
+        }
+
+        // Manipular clique na opção
+        function handleOptionClick(optionIndex) {
+            if (answered) return;
+
+            selectedOption = optionIndex;
+            answered = true;
+            
+            const options = document.querySelectorAll('.option');
+            const correctAnswer = questions[currentQuestion].correctAnswer;
+            
+            options.forEach((option, index) => {
+                if (index === correctAnswer) {
+                    option.classList.add('correct');
+                    
+                    const iconSpan = document.createElement('span');
+                    iconSpan.className = 'option-icon correct-icon';
+                    iconSpan.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+                    option.querySelector('.option-content').appendChild(iconSpan);
+                }
+                
+                if (index === optionIndex && optionIndex !== correctAnswer) {
+                    option.classList.add('incorrect');
+                    
+                    const iconSpan = document.createElement('span');
+                    iconSpan.className = 'option-icon incorrect-icon';
+                    iconSpan.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
+                    option.querySelector('.option-content').appendChild(iconSpan);
+                }
+            });
+            
+            if (optionIndex === correctAnswer) {
+                score++;
+                scoreEl.textContent = score;
+            }
+            
+            nextButton.disabled = false;
+        }
+
+        // Manipular próxima pergunta
+        function handleNextQuestion() {
+            selectedOption = null;
+            answered = false;
+            
+            // Adicionar animação de saída
+            questionsSection.classList.add('slide-out');
+            
+            setTimeout(() => {
+                if (currentQuestion < questions.length - 1) {
+                    currentQuestion++;
+                    currentQuestionEl.textContent = currentQuestion + 1;
+                    updateProgressCircles();
+                    loadQuestion();
+                    nextButton.disabled = true;
+                    
+                    if (currentQuestion === questions.length - 1) {
+                        nextButton.innerHTML = 'Ver Resultado';
+                    }
+                } else {
+                    showResults();
+                }
+                questionsSection.classList.remove('slide-out');
+            }, 300);
+        }
+
+        // Mostrar resultados
+        function showResults() {
+            questionsSection.classList.add('hidden');
+            resultsSection.classList.remove('hidden');
+            resultsSection.classList.add('fade-in');
+            
+            finalScoreEl.textContent = score;
+            const percentage = (score / questions.length) * 100;
+            
+            setTimeout(() => {
+                resultProgressBar.style.width = `${percentage}%`;
+            }, 300);
+            
+            // Feedback baseado na pontuação
+            let feedbackHTML = '';
+            
+            if (score === questions.length) {
+                feedbackHTML = `
+                    <div class="feedback perfect">
+                        <h3>Parabéns!</h3>
+                        <p>Você acertou todas as perguntas! Você é um especialista em limpeza digital.</p>
+                    </div>
+                `;
+            } else if (score >= questions.length * 0.7) {
+                feedbackHTML = `
+                    <div class="feedback good">
+                        <h3>Muito bom!</h3>
+                        <p>Você tem um bom conhecimento sobre limpeza digital. Continue aprendendo!</p>
+                    </div>
+                `;
+            } else {
+                feedbackHTML = `
+                    <div class="feedback average">
+                        <h3>Bom começo!</h3>
+                        <p>Você está no caminho certo para aprender mais sobre limpeza digital. Que tal tentar novamente?</p>
+                    </div>
+                `;
+            }
+            
+            feedbackContainer.innerHTML = feedbackHTML;
+        }
+
+        // Reiniciar quiz
+        function resetQuiz() {
+            currentQuestion = 0;
+            selectedOption = null;
+            score = 0;
+            answered = false;
+            
+            scoreEl.textContent = score;
+            currentQuestionEl.textContent = currentQuestion + 1;
+            
+            updateProgressCircles();
+            loadQuestion();
+            
+            nextButton.disabled = true;
+            nextButton.innerHTML = 'Próxima <i class="fa-solid fa-arrow-right"></i>';
+            
+            resultsSection.classList.add('hidden');
+            resultsSection.classList.remove('fade-in');
+            questionsSection.classList.remove('hidden');
+        }
+
+        // Iniciar o quiz quando a página carregar
+        document.addEventListener('DOMContentLoaded', initQuiz);
+    </script>
 </body>
 </html>
