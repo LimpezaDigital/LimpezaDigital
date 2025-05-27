@@ -614,3 +614,9 @@ footer {
     margin: 10px auto;
   }
 }
+
+
+@media (max-width: 380px) {
+  .container {padding: 0%;
+    
+}}
